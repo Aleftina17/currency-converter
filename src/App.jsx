@@ -1,8 +1,8 @@
 import React from "react";
 import "./app.scss";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
-import ConverterPage from "./pages/ConverterPage/ConverterPage";
 import MainPageContainer from "./pages/MainPage/MainPageContainer";
+import ConverterPageContainer from "./pages/ConverterPage/ConverterPageContainer";
 
 const App = () => {
   return (
@@ -20,7 +20,7 @@ const App = () => {
         </nav>
         <Routes>
           <Route path="/rates" element={<MainPageContainer />} />
-          <Route path="/converter" element={<ConverterPage />} />
+          <Route path="/converter" element={<ConverterPageContainer />} />
         </Routes>
       </div>
     </BrowserRouter>

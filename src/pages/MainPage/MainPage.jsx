@@ -1,18 +1,16 @@
-import { Select, Button, Table } from "antd";
+import { Button, Table } from "antd";
 import "./main-page.scss";
 import { useSelector } from "react-redux";
+import CurrencySelect from "../../components/CurrencySelect/CurrencySelect";
 
 const MainPage = ({ baseCurrency, onCurrencyChange, onRefreshRates }) => {
   const exchangeRates = useSelector((state) => state.mainPage.exchangeRates);
-  const availableCurrencies = useSelector(
-    (state) => state.mainPage.availableCurrencies
-  );
-  const currencyFullNames = useSelector(
-    (state) => state.mainPage.currencyFullNames
-  );
+  const availableCurrencies = useSelector((state) => state.mainPage.availableCurrencies);
+  const currencyFullNames = useSelector((state) => state.mainPage.currencyFullNames);
 
+  // Проверка наличия данных
   const isDataLoaded = () => {
-    return Object.keys(exchangeRates).length > 0; // Проверка наличия данных
+    return Object.keys(exchangeRates).length > 0;
   };
 
   const dataSource = [];
@@ -39,7 +37,6 @@ const MainPage = ({ baseCurrency, onCurrencyChange, onRefreshRates }) => {
       dataIndex: "fullName",
       key: "fullName",
     },
-
     {
       title: "Exchange Rate",
       dataIndex: "exchangeRate",
@@ -52,17 +49,12 @@ const MainPage = ({ baseCurrency, onCurrencyChange, onRefreshRates }) => {
       <div className="currency">
         <div className="currency__base">
           <span>Base Currency:</span>
-          <Select
+          <CurrencySelect
             value={baseCurrency}
-            style={{ width: 120 }}
             onChange={onCurrencyChange}
-          >
-            {availableCurrencies.map((currency) => (
-              <Select.Option key={currency} value={currency}>
-                {currency}
-              </Select.Option>
-            ))}
-          </Select>
+            currencies={availableCurrencies}
+            currencyFullNames={currencyFullNames}
+          />
         </div>
         <span className="currency__desc">
           Here you can select the base currency against which the rates of other

@@ -4,10 +4,11 @@ import {
   setBaseCurrency,
   setExchangeRates,
   setCurrencyFullNames,
-  setAvailableCurrencies, // Добавляем это действие
+  setAvailableCurrencies, 
 } from "../../redux/currencyReducer";
 import MainPage from "./MainPage";
 import axios from "axios";
+import { loadExchangeRates, loadCurrencyFullNames } from './../../redux/currencyReducer'
 
 const MainPageContainer = () => {
   const apiKey = "66d863547af743f9adec5934ecd5cd64";
@@ -42,31 +43,9 @@ const MainPageContainer = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(apiRatesUrl)
-      .then((response) => {
-        const data = response.data;
-        const exchangeRates = data.rates;
-        dispatch(setExchangeRates(exchangeRates));
-      })
-      .catch((error) => {
-        handleError(error);
-      });
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get(apiNamesUrl)
-      .then((response) => {
-        const currencyFullNames = response.data;
-        const availableCurrencies = Object.keys(currencyFullNames); // Получение массива доступных валют
-        dispatch(setCurrencyFullNames(currencyFullNames));
-        dispatch(setAvailableCurrencies(availableCurrencies)); // Обновление доступных валют
-      })
-      .catch((error) => {
-        handleError(error);
-      });
-  }, []);
+    dispatch(loadExchangeRates());
+    dispatch(loadCurrencyFullNames());
+  }, [dispatch]);
 
   return (
     <MainPage
