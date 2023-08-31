@@ -82,23 +82,28 @@ const ConverterPage = ({
     <div className="converter-page">
       <div className="converter-page__desc">
         Easily convert between different currencies using the exchange rates
-        provided.<br />Enter the amount in the 'From' field, select the currencies,
-        and watch the values update in real-time.
+        provided.
+        <br />
+        Enter the amount in the 'From' field, select the currencies, and watch
+        the values update in real-time.
       </div>
       <div className="converter-page__content">
         <div className="converter-page__section">
+          <div className="select">
+        <span>From</span>
           <CurrencySelect
             value={currencyFrom}
             onChange={handleCurrencyFromChange}
             currencies={availableCurrencies}
             currencyFullNames={currencyFullNames}
           />
+          </div>
           <div className="input-wrapper">
             <div className="currency-symbol" id="currencyFromSymbol">
               {currencyFromSymbol}
             </div>
             <Input
-            size="large"
+              size="large"
               value={inputValueFrom}
               onChange={handleInputChangeFrom}
               type="number"
@@ -112,18 +117,21 @@ const ConverterPage = ({
         </Button>
 
         <div className="converter-page__section">
+        <div className="select"> 
+          <span>To</span>
           <CurrencySelect
             value={currencyTo}
             onChange={handleCurrencyToChange}
             currencies={availableCurrencies}
             currencyFullNames={currencyFullNames}
           />
+          </div>
           <div className="input-wrapper">
             <div className="currency-symbol" id="currencyToSymbol">
               {currencyToSymbol}
             </div>
             <Input
-            size="large"
+              size="large"
               value={inputValueTo}
               onChange={handleInputChangeTo}
               type="number"

@@ -1,19 +1,23 @@
-import { fetchExchangeRates, fetchCurrencyFullNames, handleError } from './../api';
+import {
+  fetchExchangeRates,
+  fetchCurrencyFullNames,
+  handleError,
+} from "./../api";
 
 const SET_BASE_CURRENCY = "SET_BASE_CURRENCY";
 const SET_EXCHANGE_RATES = "SET_EXCHANGE_RATES";
 const SET_AVAILABLE_CURRENCIES = "SET_AVAILABLE_CURRENCIES";
 const SET_CURRENCY_FULL_NAMES = "SET_CURRENCY_FULL_NAMES";
-const SET_CURRENCY_FROM = 'SET_CURRENCY_FROM'
-const SET_CURRENCY_TO = 'SET_CURRENCY_TO'
+const SET_CURRENCY_FROM = "SET_CURRENCY_FROM";
+const SET_CURRENCY_TO = "SET_CURRENCY_TO";
 
 const initialState = {
   baseCurrency: "USD",
   exchangeRates: {},
   availableCurrencies: [],
   currencyFullNames: {},
-  currencyFrom: 'USD',
-  currencyTo: 'EUR'
+  currencyFrom: "USD",
+  currencyTo: "EUR",
 };
 
 const currencyReducer = (state = initialState, action) => {
@@ -26,9 +30,9 @@ const currencyReducer = (state = initialState, action) => {
       return { ...state, availableCurrencies: action.payload };
     case SET_CURRENCY_FULL_NAMES:
       return { ...state, currencyFullNames: action.payload };
-      case SET_CURRENCY_FROM:
+    case SET_CURRENCY_FROM:
       return { ...state, currencyFrom: action.payload };
-      case SET_CURRENCY_TO:
+    case SET_CURRENCY_TO:
       return { ...state, currencyTo: action.payload };
     default:
       return state;
@@ -66,17 +70,16 @@ export const setCurrencyFullNames = (names) => {
 export const setCurrencyFrom = (currency) => {
   return {
     type: SET_CURRENCY_FROM,
-    payload: currency
-  }
-}
+    payload: currency,
+  };
+};
 
 export const setCurrencyTo = (currency) => {
   return {
     type: SET_CURRENCY_TO,
-    payload: currency
-  }
-}
-
+    payload: currency,
+  };
+};
 
 export const loadExchangeRates = () => {
   return (dispatch) => {
@@ -106,6 +109,5 @@ export const loadCurrencyFullNames = () => {
       });
   };
 };
-
 
 export default currencyReducer;

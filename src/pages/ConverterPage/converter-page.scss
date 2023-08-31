@@ -12,6 +12,7 @@
     &__content{
         display: flex;
         justify-content: center;
+        align-items: center;
         gap: 10%;
         background-color: #fff;
         border-radius: 10px;
@@ -22,8 +23,19 @@
     &__section{
         display: flex;
         flex-direction: column;
-        
         gap: 20px
+    }
+}
+
+
+.select{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    span{
+        font-size: 14px;
+        color: #373737;
     }
 }
 
