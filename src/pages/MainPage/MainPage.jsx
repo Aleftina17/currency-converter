@@ -18,8 +18,17 @@ const MainPage = ({ baseCurrency, onCurrencyChange, onRefreshRates }) => {
   const [filteredData, setFilteredData] = useState(dataSource);
 
   useEffect(() => {
-    setFilteredData(dataSource);
-  }, [dataSource]);
+    const query = searchQuery.toLowerCase();
+
+    const filteredData = dataSource.filter((item) => {
+      const currency = item.currency.toLowerCase();
+      const fullName = (item.fullName || "").toLowerCase();
+
+      return currency.includes(query) || fullName.includes(query);
+    });
+
+    setFilteredData(filteredData);
+  }, [dataSource, searchQuery]);
 
   // Проверка наличия данных
   const isDataLoaded = () => {
@@ -38,17 +47,7 @@ const MainPage = ({ baseCurrency, onCurrencyChange, onRefreshRates }) => {
   }
 
   const handleSearchChange = (e) => {
-    const query = e.target.value.toLowerCase();
-
-    const filteredData = dataSource.filter((item) => {
-      const currency = item.currency.toLowerCase();
-      const fullName = item.fullName.toLowerCase();
-
-      return currency.includes(query) || fullName.includes(query);
-    });
-
     setSearchQuery(e.target.value);
-    setFilteredData(filteredData);
   };
 
   const columns = [
