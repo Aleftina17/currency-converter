@@ -1,19 +1,30 @@
 import { Button, Table } from "antd";
 import "./main-page.scss";
 import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 import CurrencySelect from "../../components/CurrencySelect/CurrencySelect";
 
 const MainPage = ({ baseCurrency, onCurrencyChange, onRefreshRates }) => {
   const exchangeRates = useSelector((state) => state.mainPage.exchangeRates);
-  const availableCurrencies = useSelector((state) => state.mainPage.availableCurrencies);
-  const currencyFullNames = useSelector((state) => state.mainPage.currencyFullNames);
+  const availableCurrencies = useSelector(
+    (state) => state.mainPage.availableCurrencies
+  );
+  const currencyFullNames = useSelector(
+    (state) => state.mainPage.currencyFullNames
+  );
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const dataSource = [];
+  const [filteredData, setFilteredData] = useState(dataSource);
+
+  useEffect(() => {
+    setFilteredData(dataSource);
+  }, [dataSource]);
 
   // Проверка наличия данных
   const isDataLoaded = () => {
     return Object.keys(exchangeRates).length > 0;
   };
-
-  const dataSource = [];
 
   for (const currency in exchangeRates) {
     dataSource.push({
@@ -25,6 +36,20 @@ const MainPage = ({ baseCurrency, onCurrencyChange, onRefreshRates }) => {
       ).toFixed(3),
     });
   }
+
+  const handleSearchChange = (e) => {
+    const query = e.target.value.toLowerCase();
+
+    const filteredData = dataSource.filter((item) => {
+      const currency = item.currency.toLowerCase();
+      const fullName = item.fullName.toLowerCase();
+
+      return currency.includes(query) || fullName.includes(query);
+    });
+
+    setSearchQuery(e.target.value);
+    setFilteredData(filteredData);
+  };
 
   const columns = [
     {
@@ -65,8 +90,16 @@ const MainPage = ({ baseCurrency, onCurrencyChange, onRefreshRates }) => {
         </Button>
       </div>
       <div className="table">
+        <div className="search">
+          <input
+            type="text"
+            placeholder="Search currency..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+        </div>
         <Table
-          dataSource={dataSource}
+          dataSource={filteredData}
           columns={columns}
           pagination={false}
           loading={!isDataLoaded()}
