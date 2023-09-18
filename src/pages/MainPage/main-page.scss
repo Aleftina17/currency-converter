@@ -13,11 +13,31 @@
     display: flex;
     align-items: center;
     gap: 10px;
+
+    span{
+      @media (max-width: 620px){
+        font-size: 14px;
+      }
+    }
   }
 
   &__desc {
     font-size: 12px;
     max-width: 300px;
+
+    @media (max-width: 580px){
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 620px){
+    gap: 20px;
+  }
+
+  @media (max-width: 580px){
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
   }
 }
 
@@ -28,13 +48,6 @@
   box-shadow: 0px 0px 10px 3px #00000038;
   background-color: #fff;
 
-//   .preloader {
-//     width: 80px;
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//   }
 }
 
 .btn-refresh {
@@ -47,3 +60,16 @@
     color: #2e316d !important;
   }
 }
+
+.ant-table-cell{
+  @media (max-width: 450px){
+    padding: 14px !important;
+  }
+
+  @media (max-width: 330px){
+    font-size: 13px;
+    padding: 10px !important;
+  }
+}
+
+

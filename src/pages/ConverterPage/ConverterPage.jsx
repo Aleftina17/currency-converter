@@ -107,6 +107,7 @@ const ConverterPage = ({
               value={inputValueFrom}
               onChange={handleInputChangeFrom}
               type="number"
+              placeholder="Enter the amount"
               bordered={false}
             />
           </div>
@@ -135,6 +136,7 @@ const ConverterPage = ({
               value={inputValueTo}
               onChange={handleInputChangeTo}
               type="number"
+              placeholder="Enter the amount"
               bordered={false}
             />
           </div>
