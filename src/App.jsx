@@ -11,7 +11,7 @@ const App = () => {
         <nav>
           <ul>
             <li>
-              <NavLink to="/rates"><h1>Live Rates</h1></NavLink>
+              <NavLink to="/"><h1>Live Rates</h1></NavLink>
             </li>
             <li>
               <NavLink to="/converter"><h1>Currency Converter</h1></NavLink>
@@ -19,7 +19,7 @@ const App = () => {
           </ul>
         </nav>
         <Routes>
-          <Route path="/rates" element={<MainPageContainer />} />
+          <Route path="/" element={<MainPageContainer />} />
           <Route path="/converter" element={<ConverterPageContainer />} />
         </Routes>
       </div>
