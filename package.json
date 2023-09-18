@@ -1,6 +1,6 @@
 {
   "name": "conversion",
-  "homepage": "https://aleftina17.github.io/currency-converter/rates",
+  "homepage": "https://aleftina17.github.io/currency-converter/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
