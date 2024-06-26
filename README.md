@@ -1,7 +1,7 @@
 
 # Currency Converter
 
-This project is a currency converter application built using React and Redux. It allows users to convert between different currencies using real-time exchange rates fetched from an external API. Users can select a base currency, enter an amount to convert, and view the converted amount instantly.
+This currency converter application is built using React and Redux. It allows users to convert between different currencies using real-time exchange rates fetched from an external API. Users can select a base currency, enter an amount to convert, and view the converted amount instantly.
 ## Features
 
 - Convert between various currencies using real-time exchange rates
