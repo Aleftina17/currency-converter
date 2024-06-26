@@ -10,7 +10,7 @@ This currency converter application is built using React and Redux. It allows us
 - Geolocation-based automatic selection of base currency on first load
 ## Tech Stack
 
-React, Redux, Ant Design, Axios, Node.js, Open Exchange Rates API
+React, Redux, Ant Design, SCSS, Axios, Node.js, Open Exchange Rates API
 
 
 ## Installation
